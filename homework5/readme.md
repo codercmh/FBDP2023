@@ -1,9 +1,9 @@
-# 作业5说明
+# 1. 作业5说明
 **211275009 陈铭浩**
 
 ---
 
-## maven创建项目后，更改pom.xml相关配置
+## 1.1. maven创建项目后，更改pom.xml相关配置
 ```
 #使用maven-archetype-quickstart(version=1.4)
 1. 修改编译使用的jdk版本（本机为JDK1.8）
@@ -50,7 +50,7 @@
 
 ---
 
-## 程序设计思路
+## 1.2. 程序设计思路
 1. 实验要求
 对于给定的两个输⼊⽂件A和B（如附件所示），⽂件内包含了纳斯达克100指数、标普500指
 数、道琼斯⼯业指数的部分成分股数据，第⼀列为三⼤指数编号（简化为101、102、103），第
@@ -82,7 +82,7 @@
 
 ---
 
-## 打包maven项目
+## 1.3. 打包maven项目
 
 ```
 1. 运行 Maven 编译和打包命令：
@@ -95,7 +95,7 @@ mvn clean package
 
 ---
 
-## 在hadoop中运行程序
+## 1.4. 在hadoop中运行程序
 1. 准备伪分布式hadoop
 ```
 start-all.sh
@@ -110,7 +110,7 @@ hadoop jar your-project.jar main-class input-path output-path
 #output-path 是输出结果的 HDFS 路径
 ```
 
-## 运行结果
+## 1.5. 运行结果
 
 ![fc97f88be12158fcbf64ec0f725edf9](G:\NJU_课程!!!!!!!!\金融大数据处理技术\FBDP2023\homework5\fc97f88be12158fcbf64ec0f725edf9-1698156577895-6.png)
 
@@ -121,7 +121,7 @@ hadoop jar your-project.jar main-class input-path output-path
 
 ---
 
-## 附：由于在本作业中涉及到了虚拟机中github的使用，因此将在虚拟机中科学上网的方法记录如下
+## 1.6. 附：由于在本作业中涉及到了虚拟机中github的使用，因此将在虚拟机中科学上网的方法记录如下
 
 1. 打开clash中的Allow LAN按钮，点击三角符号，记录WLAN的IP地址及端口号
 
