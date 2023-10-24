@@ -1,37 +1,36 @@
 package cmh_h5;
 
 import java.io.IOException;
-import java.io.File;
+import java.io.InputStreamReader;
+//import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
+//import java.io.FileOutputStream;
 import java.util.Set;
 import java.util.HashSet;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
+//import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.apache.poi.ss.usermodel.*;
+//import org.apache.commons.csv.CSVFormat;
+//import org.apache.commons.csv.CSVParser;
+//import org.apache.commons.csv.CSVRecord;
 
 public class UnionCalc{
-    public static class UnionCalcMapper extends Mapper<Object, Text, Text, Text>{
+        public static class UnionCalcMapper extends Mapper<Object, Text, Text, Text>{
         protected void map(Object key, Text value, Context context) throws IOException, InterruptedException {
-            FileInputStream fileinputStream = new FileInputStream(value.toString());
-            Workbook workbook = WorkbookFactory.create(fileinputStream);
-            Sheet sheet = workbook.getSheetAt(0); // 要处理的工作表在第一个位置
+            String line = value.toString(); 
 
-            for (Row row : sheet) {
-                Cell indexCell = row.getCell(0);
-                Cell stockCodeCell = row.getCell(1);
-                if (indexCell != null && stockCodeCell != null) {
-                    String index = indexCell.getStringCellValue();
-                    String stockCode = stockCodeCell.getStringCellValue();
-                    context.write(new Text(index), new Text(stockCode));
-                }
+            String[] fields = line.split(",");
+    
+            if (fields.length >= 2) {
+                String index = fields[0].trim();
+                String stockCode = fields[1].trim();
+                context.write(new Text(index), new Text(stockCode));
             }
         }
     }
