@@ -22,6 +22,8 @@ application_data.csv⽂件中，数据描述包含在columns_description.csv⽂�
 例：
 1 100
 
+---
+
 ### 2.2.设计思路
 任务一可看作是wordcount任务的一个简单变体，考虑在mapper中直接取出每一行数据（除第一行标题行外）的target标签并计数，在reducer中对每一种target标签（0/1）计数即可。
 
@@ -38,3 +40,19 @@ application_data.csv⽂件中，数据描述包含在columns_description.csv⽂�
 ![744fb73b68c693e56c0832f67f6b810](G:\NJU_课程!!!!!!!!\金融大数据处理技术\FBDP2023\experiment2\744fb73b68c693e56c0832f67f6b810.png)
 
 ![b0c6bcb2335aadda791563fd3fc4603](G:\NJU_课程!!!!!!!!\金融大数据处理技术\FBDP2023\experiment2\b0c6bcb2335aadda791563fd3fc4603.png)
+
+
+---
+
+## 3.任务二
+### 3.1.任务描述
+编写MapReduce程序，统计⼀周当中每天申请贷款的交易数
+WEEKDAY_APPR_PROCESS_START，并按照交易数从⼤到⼩进⾏排序。
+输出格式：
+<weekday><交易数量>
+例：
+Sunday 16000
+
+---
+
+### 3.2.设计思路
