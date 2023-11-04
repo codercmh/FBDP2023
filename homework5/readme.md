@@ -105,8 +105,7 @@ start-all.sh
 hdfs dfs -rm -r /user/cmh/input
 hdfs dfs -mkdir /user/cmh/input
 hdfs dfs -rm -r /user/cmh/output
-hdfs dfs -mkdir /user/cmh/output
-#删除旧的input及output文件夹并创建新的input及output文件夹
+#删除旧的input及output文件夹并创建新的input文件夹
 hdfs dfs -put inputfile-path input
 #input-path 是输入数据的路径
 ```
@@ -120,7 +119,13 @@ hadoop jar your-project.jar main-class input-path output-path
 ```
 
 ## 1.5. 运行结果
-
+```
+hdfs dfs -ls /user/cmh/output
+#查看是否运行成功（也可通过8088端口查看Hadoop ResourceManager web界面）
+hdfs dfs -get output output
+cat output/*
+#检查输出：将分布式文件系统中的输出文件拷贝至本地文件系统并检查
+```
 ![fc97f88be12158fcbf64ec0f725edf9](G:\NJU_课程!!!!!!!!\金融大数据处理技术\FBDP2023\homework5\fc97f88be12158fcbf64ec0f725edf9-1698156577895-6.png)
 
 ![78facd88071b9b08984cfe37885785b](G:\NJU_课程!!!!!!!!\金融大数据处理技术\FBDP2023\homework5\78facd88071b9b08984cfe37885785b.png)
