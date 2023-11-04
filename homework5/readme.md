@@ -100,7 +100,11 @@ mvn clean package
 ```
 start-all.sh
 ```
-2. 将jar文件和输入文件上传到Hadoop中
+2. 将输入文件上传到Hadoop中
+```
+hdfs dfs -put inputfile-path input
+#input-path 是输入数据的路径
+```
 3. 使用 hadoop jar 命令来运行 JAR 文件
 ```
 hadoop jar your-project.jar main-class input-path output-path
