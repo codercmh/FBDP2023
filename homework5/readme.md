@@ -102,13 +102,13 @@ start-all.sh
 ```
 2. 将输入文件上传到Hadoop中并准备input及output文件夹
 ```
-hdfs dfs -put inputfile-path input
-#input-path 是输入数据的路径
 hdfs dfs -rm -r /user/cmh/input
 hdfs dfs -mkdir /user/cmh/input
 hdfs dfs -rm -r /user/cmh/output
 hdfs dfs -mkdir /user/cmh/output
 #删除旧的input及output文件夹并创建新的input及output文件夹
+hdfs dfs -put inputfile-path input
+#input-path 是输入数据的路径
 ```
 3. 使用 hadoop jar 命令来运行 JAR 文件
 ```
