@@ -1,8 +1,7 @@
 package cmh_e2;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.TreeMap;
 
 import org.apache.hadoop.conf.Configuration;
@@ -31,25 +30,18 @@ public class ApplyNumOfWeekday {
     }
 
     public static class ApplyNumOfWeekdayReducer extends Reducer<Text,IntWritable,Text,IntWritable>{
-        private Map<Text, IntWritable> weekdayCounts = new HashMap<>();
+        TreeMap<Integer,String> sortedWeekdays = new TreeMap<>(Collections.reverseOrder());
         protected void reduce(Text key,Iterable<IntWritable> values,Context context) throws IOException,InterruptedException{
             int sum=0;
             for (IntWritable val:values){
                 sum +=val.get();
             }
-            weekdayCounts.put(key,new IntWritable(sum));
-        }
+            sortedWeekdays.put(sum,key.toString());
+            //context.write(key,new IntWritable(sum));
+        } 
         protected void cleanup(Context context) throws IOException,InterruptedException{
-            TreeMap<Text, IntWritable> sortedWeekdays = new TreeMap<>((a, b) -> {
-                int cmp = weekdayCounts.get(b).get() - weekdayCounts.get(a).get();
-                if (cmp == 0) {
-                    return a.toString().compareTo(b.toString());
-                }
-                return cmp;
-            });
-            sortedWeekdays.putAll(weekdayCounts);
-            for (Map.Entry<Text, IntWritable> entry : sortedWeekdays.entrySet()) {
-                context.write(entry.getKey(), entry.getValue());
+            for (Integer count : sortedWeekdays.keySet()) {
+                context.write(new Text(sortedWeekdays.get(count)), new IntWritable(count));
             }
         }
     }
@@ -60,6 +52,7 @@ public class ApplyNumOfWeekday {
 
         job.setJarByClass(ApplyNumOfWeekday.class);
         job.setMapperClass(ApplyNumOfWeekdayMapper.class);
+        job.setCombinerClass(ApplyNumOfWeekdayReducer.class);
         job.setReducerClass(ApplyNumOfWeekdayReducer.class);
 
         job.setOutputKeyClass(Text.class);
