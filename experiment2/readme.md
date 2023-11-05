@@ -56,3 +56,22 @@ Sunday 16000
 ---
 
 ### 3.2.设计思路
+首先在mapper中直接取出每一行数据（除第一行标题行外）的WEEKDAY_APPR_PROCESS_START标签并计数，在reducer中对每一种Weekday累计计数。为了按照交易数对结果从大到小排序，我使用了treemap，并利用Collections.reverseOrder()将元素逆序排列，最后在cleanup中输出排序好的结果
+> TreeMap是一种基于红黑树实现的有序映射数据结构，它根据键的自然顺序或自定义排序顺序来维护键-值对的有序性。默认情况下，TreeMap会按照键的自然顺序（升序）来排序。如果想要逆序（降序）排序，可以使用Collections.reverseOrder()来创建一个比较器，它会将元素逆序排列。
+
+> 在Hadoop MapReduce中，cleanup函数是一个用于Mapper和Reducer任务的生命周期方法之一。cleanup函数在Map或Reduce任务执行结束后被调用，用于执行一些清理工作。具体而言：
+> 对于Mapper任务：cleanup函数会在Mapper任务执行完毕后调用。你可以在cleanup函数中进行一些资源释放、缓存刷新等清理工作；
+> 对于Reducer任务：cleanup函数会在Reducer任务执行完毕后调用。它可以用于执行一些清理操作，例如将数据写入数据库、关闭文件句柄等。
+> cleanup函数通常用于处理与MapReduce任务相关的资源管理，以确保任务执行后资源被正确释放，或者用于执行一些最终的计算和输出操作。
+
+![4c6ec209a038e699f8c8c4cffdcc96a](G:\NJU_课程!!!!!!!!\金融大数据处理技术\FBDP2023\experiment2\4c6ec209a038e699f8c8c4cffdcc96a.png)
+
+![0a598642d3c0b4cac67cb0dcfcb7ab5](G:\NJU_课程!!!!!!!!\金融大数据处理技术\FBDP2023\experiment2\0a598642d3c0b4cac67cb0dcfcb7ab5.png)
+
+---
+
+### 3.3.运行结果
+
+![ddf6739b208f01342f52d2a77c2adc6](G:\NJU_课程!!!!!!!!\金融大数据处理技术\FBDP2023\experiment2\ddf6739b208f01342f52d2a77c2adc6.png)
+
+![cb272c9fe9e93ffd751a082654a347c](G:\NJU_课程!!!!!!!!\金融大数据处理技术\FBDP2023\experiment2\cb272c9fe9e93ffd751a082654a347c.png)
