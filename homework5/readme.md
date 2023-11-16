@@ -113,13 +113,14 @@ hdfs dfs -put inputfile-path input
 3. 使用 hadoop jar 命令来运行 JAR 文件
 ```
 hadoop jar your-project.jar main-class input-path output-path
-#your-project.jar 是你上传到 Hadoop 的 JAR 文件
+#your-project.jar 是你的 JAR 文件
 #main-class 是包含 main 方法的 Java 类的全名，用于启动你的作业
 #input-path 是输入数据的 HDFS 路径
 #output-path 是输出结果的 HDFS 路径
 ```
 
 ## 1.5. 运行结果
+
 ```
 hdfs dfs -ls /user/cmh/output
 #查看是否运行成功（也可通过8088端口查看Hadoop ResourceManager web界面）
