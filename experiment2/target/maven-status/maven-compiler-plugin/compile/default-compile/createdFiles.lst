@@ -1,6 +1,9 @@
+cmh_e2/PredBreak$PredBreakReducer.class
+cmh_e2/PredBreak$PredBreakMapper.class
 cmh_e2/NumOfBreak$NumOfBreakReducer.class
 cmh_e2/ApplyNumOfWeekday.class
 cmh_e2/NumOfBreak$NumOfBreakMapper.class
-cmh_e2/ApplyNumOfWeekday$ApplyNumOfWeekdayMapper.class
 cmh_e2/ApplyNumOfWeekday$ApplyNumOfWeekdayReducer.class
+cmh_e2/PredBreak.class
+cmh_e2/ApplyNumOfWeekday$ApplyNumOfWeekdayMapper.class
 cmh_e2/NumOfBreak.class
