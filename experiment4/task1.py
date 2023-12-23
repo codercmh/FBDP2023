@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, expr, when
 
-spark = SparkSession.builder.appName("LoanAmountDistribution").getOrCreate()
+spark = SparkSession.builder.appName("task1").getOrCreate()
 
 file_path = "/user/cmh/input/application_data.csv"
 df = spark.read.csv(file_path, header=True, inferSchema=True)
@@ -22,5 +22,22 @@ result_formatted = result.select(
 )
 
 result_formatted.show(truncate=False)
+
+
+
+df = df.withColumn("dif", col("AMT_CREDIT") - col("AMT_INCOME_TOTAL"))
+
+df_sorted = df.orderBy(col("dif").desc())
+
+top_10_high_diff = df_sorted.limit(10)
+
+df_sorted_asc = df.orderBy(col("dif").asc())
+
+top_10_low_diff = df_sorted_asc.limit(10)
+
+top_10_high_diff.select("SK_ID_CURR", "NAME_CONTRACT_TYPE", "AMT_CREDIT", "AMT_INCOME_TOTAL", "dif").show()
+top_10_low_diff.select("SK_ID_CURR", "NAME_CONTRACT_TYPE", "AMT_CREDIT", "AMT_INCOME_TOTAL", "dif").show()
+
+#result_formatted.write.csv("/user/cmh/output/credit_distribution_result.csv", header=True)
 
 spark.stop()
